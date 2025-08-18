@@ -1,17 +1,28 @@
 <div>
-    <h1>Login</h1>
+    <h1>Register</h1>
 
     @if($message = session()->get('message'))
         <div> {{ $message }}</div>
     @endif
-
-    <form action="{{ route('login') }}" method="POST">
+    
+    <form action="{{ route('register') }}" method="POST">
         @csrf
+        <div>
+            <input name="name" placeholder="Nome" value = "{{ old('name')}}" />
+            @error('name')
+                <span> {{ $message}} </span>
+            @enderror
+        </div>
+
         <div>
             <input name="email" placeholder="Email" value="{{ old('email') }}" />
             @error('email')
                 <span> {{ $message}} </span>
             @enderror
+        </div>
+
+        <div>
+            <input name="email_confirmation" placeholder="Email Confirmation" />
         </div>
 
         <div>
